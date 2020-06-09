@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+
+    {% endfor %}
+{% endif %}
 
     <div class="container">
         <div class="jumbotron">
             <h1>Welcome To Invoice Mangement </h1>
         </div>
             <h3>Upload Your PDF File Here:</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="document">
+                <button type="submit"><a href="/dashboard/details">Upload</a></button>
+            </form>
     </div>
 
 
