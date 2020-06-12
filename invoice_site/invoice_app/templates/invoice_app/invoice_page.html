@@ -1,27 +1,50 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %)
 
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-danger" role="alert">
-        {{ message }}
-    </div>
 
-    {% endfor %}
-{% endif %}
+    <div class="app-main">
+        <div class="wrapper">
+            <div class="page">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
 
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Welcome To Invoice Mangement </h1>
+                    {% endfor %}
+                {% endif %}
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Invoice Details</h1>
+                        {% for user in users %}
+                            <h2>Welcome {{ user.username }}</h2>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="page-inner">
+                    <div class="container">
+                        {% block section %}
+                        <div class="row">
+                            <div class="col-4 ">
+
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit">Upload</button>
+                                </form>
+
+                            </div>
+
+
+                        </div>
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
         </div>
-            <h3>Upload Your PDF File Here:</h3>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="document">
-                <button type="submit"><a href="/dashboard/details">Upload</a></button>
-            </form>
     </div>
-
-
 
 {% endblock %}

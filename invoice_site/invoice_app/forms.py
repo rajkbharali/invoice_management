@@ -1,7 +1,14 @@
-from invoice_app.models import Invoice
+from invoice_app.models import InvoiceInfo, InvoiceHome
 from django import forms
 
-class InvoiceForm(forms.ModelForm):
+
+class InvoiceHomeForm(forms.ModelForm):
     class Meta:
-        model = Invoice
-        fields = ['invoice_number','invoice_name','invoice_date']
+        model = InvoiceHome
+        fields = ['user','uploaded_pdf']
+
+
+class InvoiceInfoForm(forms.ModelForm):
+    class Meta:
+        model = InvoiceInfo
+        fields = ['invoice_number', 'vendor_name', 'invoice_date']

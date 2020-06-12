@@ -22,14 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('',include('accounts.urls',namespace='accounts')),
-    path('',include('django.contrib.auth.urls')),
-    # path('', include('invoice_app.urls', namespace='invoice_app')),
+    path('login/',v.login_page,name='login'),
     path('register/',v.register,name='register'),
-    path('dashboard/', v1.dashboard,name='dashboard'),
-    path('dashboard/details/',v1.DetailsPage.as_view(),name='details'),
-    # path('login/',v.login,name='login'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    path('dashboard_agent/', v1.dashboard_agent,name='dashboard_agent'),
+    path('dashboard_manager/', v1.dashboard_manager,name='dashboard_manager'),
+    path('dashboard_agent/details/',v1.dashboard_agent_details,name='details'),
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
