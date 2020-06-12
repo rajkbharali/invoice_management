@@ -1,19 +1,31 @@
-{% extends 'invoice_app/invoice_page.html' %}
+{% extends 'base.html' %}
 {% load bootstrap4 %}
-{% block section %}
-<div class="row">
-    <div class="col-4 ">
+{% block content %}
 
-        <form method="POST" class="form">
-             {% csrf_token %}
-             {% bootstrap_form form %}
-             <input type="submit" class="btn btn-default" value="Submit">
-        </form>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Invoice Details</h1>
     </div>
-    <div class="col-8">
-        <iframe   src="{{ MEDIA_URL }}{{ pdf.uploaded_pdf.url }}" type="application/pdf" width="100%" height="600px" ></iframe>
-    </div>
-
 </div>
+<div class="page">
+    <div class="page-inner">
+        <div class="row">
+            <div class="col-4 offset-2">
+
+                <form method="POST" class="form">
+                     {% csrf_token %}
+                     {% bootstrap_form form %}
+                     <input type="submit" class="btn btn-default" value="Submit">
+
+                </form>
+            </div>
+            <div class="col-6">
+                <iframe   src="{{ MEDIA_URL }}{{ pdf.uploaded_pdf.url }}" type="application/pdf" width="70%" height="500px" ></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

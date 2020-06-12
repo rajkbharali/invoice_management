@@ -27,4 +27,6 @@ urlpatterns = [
     path('dashboard_agent/', v1.dashboard_agent,name='dashboard_agent'),
     path('dashboard_manager/', v1.dashboard_manager,name='dashboard_manager'),
     path('dashboard_agent/details/',v1.dashboard_agent_details,name='details'),
+    path('dashboard_agent/details/<user_id>/',v1.dashboard_agent_item_details,name='item_details'),
+    path('end/',v1.end_page,name='end_page'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
